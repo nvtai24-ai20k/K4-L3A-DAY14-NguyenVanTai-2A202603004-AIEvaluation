@@ -3,7 +3,11 @@
 Not part of the required lab code. It needs extra packages that are
 deliberately kept out of requirements.txt:
 
-    pip install ragas deepeval langchain-openai python-dotenv
+    pip install ragas deepeval python-dotenv "langchain-community==0.3.31" \
+        "langchain-openai<1" "langchain<1" "langchain-core<1"
+
+(ragas 0.4.3 fails to import with langchain-community 0.4.x, hence the pins.
+Results in framework_comparison.json came from ragas 0.4.3 and deepeval 4.2.7.)
 
 Run from the repo root:  python artifacts/framework_comparison.py
 Both frameworks read the same inputs (question, actual answer, retrieved

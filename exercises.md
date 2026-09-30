@@ -352,19 +352,57 @@ verbosity bias và self-preference bằng cách nào?
 Chỉ làm sau khi hoàn thành 3.1–3.3. Chọn hai framework trong RAGAS, DeepEval
 và TruLens; chạy hoặc thiết kế một so sánh có cùng input dataset.
 
-| Tiêu chí | Framework 1: ____ | Framework 2: ____ |
+Đã chạy thật hai framework trên cùng 20 traces của Exercise 3.2 (question,
+actual answer, 5 retrieved chunks, expected answer), cùng judge `gpt-4o-mini`.
+Script: `artifacts/framework_comparison.py`; điểm từng case:
+`artifacts/framework_comparison.json`. Phiên bản: ragas 0.4.3, deepeval 4.2.7.
+
+| Tiêu chí | Framework 1: RAGAS | Framework 2: DeepEval |
 |---|---|---|
-| Setup complexity | | |
-| Metrics available | | |
-| CI/CD integration | | |
-| Kết quả trên cùng dataset | | |
-| Insight rút ra | | |
+| Setup complexity | Cao hơn. Cần bọc LLM và embedding qua LangChain, đóng dữ liệu thành `EvaluationDataset`; bản 0.4.3 không import được với `langchain-community` 0.4.x nên phải pin về 0.3.x. | Thấp hơn. Chỉ cần tạo `LLMTestCase` và gọi `metric.measure()`, truyền tên model trực tiếp; không cần embedding. Chạy tuần tự từng metric nên chậm hơn RAGAS. |
+| Metrics available | Faithfulness, ResponseRelevancy, LLMContextRecall, LLMContextPrecisionWithReference (đã dùng); ngoài ra có answer correctness, noise sensitivity... Tập trung vào RAG. | FaithfulnessMetric, AnswerRelevancyMetric, ContextualRecallMetric, ContextualPrecisionMetric (đã dùng); ngoài ra có hallucination, bias, toxicity, G-Eval theo rubric tự viết. Rộng hơn RAG. |
+| CI/CD integration | Trả về bảng điểm; phải tự viết bước so ngưỡng và làm fail pipeline. | Tích hợp sẵn với pytest (`assert_test`, `deepeval test run`), mỗi metric có `threshold` nên dùng làm quality gate trực tiếp. |
+| Kết quả trên cùng dataset | Faithfulness 0.824, Answer Relevancy 0.688, Context Recall 0.967, Context Precision 0.891 | Faithfulness 0.855 (19 case), Answer Relevancy 0.808, Context Recall 0.882, Context Precision 0.887 |
+| Insight rút ra | Relevancy là điểm liên tục dựa trên embedding nên phân biệt mịn hơn, nhưng cho 0.000 ở M02, một answer đúng. Context Recall dễ dãi: H03 được 1.000. | Relevancy theo tỷ lệ câu liên quan nên 13/20 case được đúng 1.000, ít phân biệt. Context Recall bắt được lỗi retrieval của H03 (0.250). |
+
+Ghi chú: một lần chấm của DeepEval lỗi (Faithfulness của E03) nên trung bình
+Faithfulness của DeepEval tính trên 19 case.
 
 - Scores có nhất quán không?
 - Framework nào strict hơn và vì sao?
 - Hai framework có tìm ra cùng failure cases không?
 
 > *Phân tích:*
+>
+> **Nhất quán ở mức trung bình, không nhất quán ở từng case.** Context
+> Precision khớp nhất: chênh lệch tuyệt đối trung bình 0.051, 16/20 case lệch
+> không quá 0.1. Faithfulness lệch 0.137 và Context Recall lệch 0.127. Answer
+> Relevancy lệch nhiều nhất (0.202, chỉ 8/20 case lệch không quá 0.1). Có case
+> hai framework kết luận ngược nhau: H01 Faithfulness là 1.000 (RAGAS) và 0.333
+> (DeepEval); H03 Faithfulness là 0.500 và 1.000.
+>
+> **Không framework nào strict hơn ở mọi metric.** RAGAS strict hơn về Answer
+> Relevancy (0.688 so với 0.808): nó sinh lại câu hỏi từ answer rồi đo độ tương
+> đồng embedding với câu hỏi gốc, và cho 0 khi coi answer là lảng tránh — vì
+> vậy M02 ("cancellation is no longer guaranteed") bị 0.000 dù đúng. DeepEval
+> strict hơn về Context Recall (0.882 so với 0.967): nó kiểm tra từng câu của
+> expected answer có được chunk nào hỗ trợ không, nên phát hiện H03 (0.250) và
+> M07 (0.500), trong khi RAGAS cho cả hai 1.000. Faithfulness và Context
+> Precision gần như ngang nhau.
+>
+> **Trùng một phần về failure cases.** Cả hai cùng cho A01 và A02 điểm
+> Relevancy 0.000 (lời từ chối không "trả lời" câu hỏi) và cùng cho A01 Context
+> Precision 0.000; cùng đánh dấu M03 và H04 có Faithfulness thấp (≤ 0.667).
+> Khác nhau: lỗi retrieval của H03 chỉ DeepEval thấy; RAGAS đánh dấu H02, H05
+> về Faithfulness còn DeepEval đánh dấu M01, H01.
+>
+> **So với word-overlap của lab:** cả hai framework cho Faithfulness cao hơn
+> hẳn (0.82–0.86 so với 0.624) và đều cho E02 điểm tối đa, xác nhận nhận định ở
+> Exercise 3.2 rằng nhiều failure của heuristic là báo động giả. Ba case thấp
+> nhất của lab (A01, A02, H03) vẫn là các case bị ít nhất một framework đánh
+> dấu, nên thứ hạng case xấu nhất thì nhất quán. Kết luận thực tế: không nên
+> dùng điểm của một framework làm sự thật tuyệt đối; nên chọn một framework,
+> calibrate với nhãn của người rồi giữ cố định để so sánh giữa các lần chạy.
 
 ### Exercise 3.5 — Retrieval Reranking (Bonus +5)
 
@@ -433,4 +471,4 @@ Hoàn thành kiểm tra cuối trong khoảng 16:50–17:00.
 - [x] Exercise 3.3 có rubric 1–5 và bias controls.
 - [x] `reflection.md` có ba failure analyses và regression strategy.
 - [x] Đã copy `template.py` thành `solution/solution.py`.
-- [x] Exercise 3.4 và 3.5 chỉ làm nếu chọn bonus. (Đã làm 3.5; không làm 3.4.)
+- [x] Exercise 3.4 và 3.5 chỉ làm nếu chọn bonus. (Đã làm cả 3.4 và 3.5.)

@@ -1,0 +1,261 @@
+{
+  "ragas": {
+    "E01": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.754,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "E02": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.93,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "E03": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.819,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "E04": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.97,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "E05": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.907,
+      "context_recall": 1.0,
+      "context_precision": 0.833
+    },
+    "M01": {
+      "faithfulness": 0.75,
+      "answer_relevancy": 0.586,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "M02": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.0,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "M03": {
+      "faithfulness": 0.5,
+      "answer_relevancy": 0.846,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "M04": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.775,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "M05": {
+      "faithfulness": 0.714,
+      "answer_relevancy": 0.906,
+      "context_recall": 1.0,
+      "context_precision": 0.7
+    },
+    "M06": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.848,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "M07": {
+      "faithfulness": 0.857,
+      "answer_relevancy": 0.759,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "H01": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.683,
+      "context_recall": 1.0,
+      "context_precision": 0.7
+    },
+    "H02": {
+      "faithfulness": 0.5,
+      "answer_relevancy": 0.748,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "H03": {
+      "faithfulness": 0.5,
+      "answer_relevancy": 0.804,
+      "context_recall": 1.0,
+      "context_precision": 0.95
+    },
+    "H04": {
+      "faithfulness": 0.667,
+      "answer_relevancy": 0.764,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "H05": {
+      "faithfulness": 0.5,
+      "answer_relevancy": 0.71,
+      "context_recall": 0.667,
+      "context_precision": 1.0
+    },
+    "A01": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.0,
+      "context_recall": 1.0,
+      "context_precision": 0.0
+    },
+    "A02": {
+      "faithfulness": 0.75,
+      "answer_relevancy": 0.0,
+      "context_recall": 0.667,
+      "context_precision": 0.804
+    },
+    "A03": {
+      "faithfulness": 0.75,
+      "answer_relevancy": 0.948,
+      "context_recall": 1.0,
+      "context_precision": 0.833
+    }
+  },
+  "deepeval": {
+    "E01": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "E02": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "E03": {
+      "faithfulness": null,
+      "answer_relevancy": 1.0,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "E04": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "E05": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "M01": {
+      "faithfulness": 0.667,
+      "answer_relevancy": 1.0,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "M02": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "M03": {
+      "faithfulness": 0.5,
+      "answer_relevancy": 1.0,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "M04": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "M05": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "context_recall": 1.0,
+      "context_precision": 0.7
+    },
+    "M06": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "M07": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "context_recall": 0.5,
+      "context_precision": 1.0
+    },
+    "H01": {
+      "faithfulness": 0.333,
+      "answer_relevancy": 1.0,
+      "context_recall": 0.8,
+      "context_precision": 1.0
+    },
+    "H02": {
+      "faithfulness": 0.75,
+      "answer_relevancy": 0.667,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "H03": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.571,
+      "context_recall": 0.25,
+      "context_precision": 0.5
+    },
+    "H04": {
+      "faithfulness": 0.5,
+      "answer_relevancy": 0.667,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "H05": {
+      "faithfulness": 0.75,
+      "answer_relevancy": 0.5,
+      "context_recall": 1.0,
+      "context_precision": 1.0
+    },
+    "A01": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.0,
+      "context_recall": 0.333,
+      "context_precision": 0.0
+    },
+    "A02": {
+      "faithfulness": 0.75,
+      "answer_relevancy": 0.0,
+      "context_recall": 0.75,
+      "context_precision": 0.7
+    },
+    "A03": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.75,
+      "context_recall": 1.0,
+      "context_precision": 0.833
+    }
+  },
+  "judge_model": "gpt-4o-mini",
+  "averages": {
+    "ragas": {
+      "faithfulness": 0.824,
+      "answer_relevancy": 0.688,
+      "context_recall": 0.967,
+      "context_precision": 0.891
+    },
+    "deepeval": {
+      "faithfulness": 0.855,
+      "answer_relevancy": 0.808,
+      "context_recall": 0.882,
+      "context_precision": 0.887
+    }
+  }
+}
